@@ -1,0 +1,43 @@
+#github actions for frontend
+
+name: Frontend CI
+on: 
+  pull_request:
+    paths:
+      -"/Frontend/**"
+    types:
+     - opened
+     - synchronize
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    continue-on-error: false
+    env:
+      DEV_BUILD_DISABLED: false
+      FULL_BUILD_DISABLED: true
+      CUSTOM_CHECKS_DISABLED: true
+      CONFIGURE_DISABLED: false
+      CHECK_WORK_TREE_STATUS_DISABLED: true
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: v18.17.0
+
+      - name: Install yarn
+        run: npm install -g yarn
+      
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+        wroking-directory: ./Frontend
+
+      - name: Run lint check
+        run: yarn lint
+        wroking-directory: ./Frontend
+
+
+
