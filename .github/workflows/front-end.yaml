@@ -33,11 +33,11 @@ jobs:
       
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-        wroking-directory: ./Frontend
+        working-directory: ./next-frontend
 
       - name: Run lint check
         run: yarn lint
-        wroking-directory: ./Frontend
+        working-directory: ./next-frontend
 
 
 
