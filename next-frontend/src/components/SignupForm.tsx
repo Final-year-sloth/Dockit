@@ -17,7 +17,7 @@ const SignupForm: React.FC = () => {
     } else {
       setError('');
       // Perform signup logic here
-      console.log({ name, email, password, college });
+      console.log('Signup process initiated');
     }
   };
 
