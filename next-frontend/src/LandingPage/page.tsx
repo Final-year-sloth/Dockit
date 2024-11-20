@@ -1,225 +1,170 @@
-'use client';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import { Typewriter } from 'react-simple-typewriter';
-import { useState } from 'react';
+"use client";
 
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Typewriter } from "react-simple-typewriter";
+import LandingNav from "@/components/LandingNav";
+import LandingFooter from "@/components/LandingFooter";
+import LandingMobileMenu from "@/components/LandingMobileMenu";
 
-// Handling Newsletter Submission
-  const handleNewsletterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  const form = e.target as HTMLFormElement;
-  const email = form.email.value;
+const navLinks = [
+  { href: "/about", label: "About Us" },
+  { href: "/auth/login", label: "Log in" },
+  { href: "/auth/signup", label: "Sign up" },
+];
 
-  // email submission logic
-  console.log(`Newsletter email submitted: ${email}`);
+const LandingPage: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  form.reset();
-};
-
-// Landing Page Section
-  const LandingPage: React.FC = () => {
-    return (
-    <main className="flex min-h-screen h-fit flex-col items-center relative">
+  return (
+    <main className="flex min-h-screen flex-col items-center relative">
       {/* Navbar */}
-       <Navbar />
+      <LandingNav />
 
-      {/* Hero Section */}
-      <header
+      {/* Mobile Menu */}
+      <LandingMobileMenu
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+        navLinks={navLinks}
+      />
+
+      {/* Header Section */}
+      <div
         id="home"
-        className="relative flex flex-col-reverse md:flex-row w-full h-screen mt-16 max-w-8xl items-center justify-evenly bg-cover bg-center"
-        style={{ backgroundImage: "url('/LandingPage_Images/BackgroundImage.jpeg')" }}
+        className="relative flex flex-col w-full h-screen md:flex-row max-w-8xl bg-cover bg-center pt-16"
+        style={{
+          backgroundImage: "url('/LandingPage_Images/BackgroundImage.jpeg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       >
-        {/*Displaying  background effect */}
-        <div className="absolute inset-0 bg-black opacity-60 z-10 backdrop-blur-lg"></div>
+        {/* Content Section */}
+        <div className="relative z-20 w-full md:w-2/5 flex flex-col justify-center items-end gap-6  p-8 md:p-12 md:m-6 text-right">
+          {/* Subtitle */}
+          <h1 className="text-3xl  sm:text-4xl md:text-5xl font-semibold text-red-800  mt-7 p-2 md:p-4">
+            START CONNECTING TODAY!
+          </h1>
 
-        {/* Right Section with Text */}
-        <div className="relative z-20 w-full h-2/4 md:h-full md:w-2/5 flex flex-col justify-center items-start text-center md:text-right gap-6 p-4 md:p-8 md:ml-auto md:mr-10">
-          <div className="flex flex-col gap-3 text-white">
-            <h4 className="text-3xl font-black mr-8 md:text-5xl">Start Connecting today!</h4>
-          </div>
-
-          <p className="max-w-md text-xs md:text-base text-gray-300">
-            Medigeek is a social media platform that provides assistance and various job opportunities.
+          {/* Description */}
+          <p className="text-gray-300 text-base md:text-lg p-2 md:p-4 break-words max-w-full">
+            Medigeek is a social media platform that provides assistance and
+            various job opportunities.
           </p>
 
-          {/* Offers Provided */}
-          <h2 className="text-white text-[1.5rem] md:text-[1.8rem] capitalize">We Offer</h2>
-          <span className="block text-white text-[1.5rem] md:text-[1.8rem] capitalize">
+          {/* Offers Heading */}
+          <h2 className="text-white text-2xl md:text-3xl p-2 ml-8 md:p-4">
+            We Offer
+          </h2>
+
+          {/* Typewriter Text */}
+          <span className="text-white text-2xl md:text-3xl p-2 md:p-4">
             <Typewriter
-              words={['Posting', 'Exploring', 'Connecting Friends', 'Sharing Experiences', 'Job Opportunities', ' And Much More...']}
+              words={[
+                "Posting",
+                "Exploring",
+                "Connecting Friends",
+                "Sharing Experiences",
+                "Job Opportunities",
+                "And Much More...",
+              ]}
               loop
               typeSpeed={50}
               deleteSpeed={30}
               delaySpeed={2000}
               cursor
               cursorStyle="|"
-              cursorBlinking={true}
+              cursorBlinking
             />
           </span>
 
-          {/* New to Medigeek Section */}
-          <div className="w-full flex items-center mt-6 justify-center md:justify-start gap-3">
-            <h3 className="text-lg font-bold text-white">New to Medigeek?</h3>
-            <Link href="#explore" className="inline-block">
-              <button className="px-4 py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition text-sm md:text-base">
+          {/* Call-to-Action Section */}
+          <div className=" flex flex-col items-end justify-end gap-4 mt-8 w-full">
+            <h1 className="text-white text-2xl md:text-3xl mb-4">
+              New to Medigeek?
+            </h1>
+            <Link href="auth/signup">
+              <button className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300">
                 Get Started
               </button>
             </Link>
           </div>
         </div>
-      </header>
+      </div>
+
+      <style jsx>{`
+        #home::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background-color: rgba(0, 0, 0, 0.4); /* dark overlay */
+          backdrop-filter: blur(3px); /* optional blur */
+          z-index: 10;
+        }
+      `}</style>
 
       {/* Why Medigeek Section */}
       <section className="features-section py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-12">Why Medigeek?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="feature-item text-center">
-              <Image src="/LandingPage_Images/community_icon.png" alt="Community" width={80} height={80} />
-              <h3 className="text-xl font-semibold mt-4">Explore Communities</h3>
-              <p className="text-gray-600 mt-4">Join groups and clubs based on your interests and meet like-minded peers.</p>
-        </div>
-          <div className="feature-item text-center">
-              <Image src="/LandingPage_Images/job_icon.png" alt="Jobs" width={80} height={80} />
-              <h3 className="text-xl font-semibold mt-4">Job Opportunities</h3>
-              <p className="text-gray-600 mt-4">Find internships and jobs curated specifically for undergraduates.</p>
+          <h2 className="text-4xl font-bold text-center mb-12">
+            Why Medigeek?
+          </h2>
+          <div className="flex flex-col md:flex-row justify-center gap-12">
+            {/* Explore Communities Card */}
+            <div className="feature-item text-center bg-white shadow-lg rounded-lg p-8">
+              <Image
+                src="/LandingPage_Images/community_icon.png"
+                alt="Community"
+                width={80}
+                height={80}
+              />
+              <h3 className="text-xl font-semibold mt-4">
+                Explore Communities
+              </h3>
+              <p className="text-gray-600 mt-4">
+                Join groups and clubs based on your interests and meet
+                like-minded peers.
+              </p>
             </div>
-            <div className="feature-item text-center">
-              <Image src="/LandingPage_Images/assessment_icon.png" alt="Assessments" width={80} height={80} />
+
+            {/* Job Opportunities Card */}
+            <div className="feature-item text-center bg-white shadow-lg rounded-lg p-8">
+              <Image
+                src="/LandingPage_Images/job_icon.png"
+                alt="Jobs"
+                width={80}
+                height={80}
+              />
+              <h3 className="text-xl font-semibold mt-4">Job Opportunities</h3>
+              <p className="text-gray-600 mt-4">
+                Find internships and jobs curated specifically for
+                undergraduates.
+              </p>
+            </div>
+
+            {/* Assessments Card */}
+            <div className="feature-item text-center bg-white shadow-lg rounded-lg p-8">
+              <Image
+                src="/LandingPage_Images/assessment_icon.png"
+                alt="Assessments"
+                width={80}
+                height={80}
+              />
               <h3 className="text-xl font-semibold mt-4">Assessments</h3>
-              <p className="text-gray-600 mt-4">Take assessments to evaluate your skills and improve your qualifications.</p>
+              <p className="text-gray-600 mt-4">
+                Take assessments to evaluate your skills and improve your
+                qualifications.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Footer Section */}
-      <Footer />
+      {/* Footer Component */}
+      <LandingFooter />
     </main>
   );
 };
 
-// Navbar Component
-  const Navbar: React.FC = () => {
-   return (
-    <div className="absolute top-0 w-full bg-white h-16 bg-opacity-80 z-50">
-      <div className="max-w-7xl mx-auto flex items-center justify-between p-4">
-        <Image
-          src="/LandingPage_Images/Logo.png"
-          alt="logo"
-          height={50}
-          width={150}
-          className="-mt-4"
-          style={{ objectFit: 'contain' }}
-        />
-
-        <ul className="hidden md:flex gap-8">
-          <li>
-            <Link className="text-black hover:text-red-400 transition-colors text-xs sm:text-base" href="#home">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link className="text-black hover:text-red-400 transition-colors text-xs sm:text-base" href="#signIn">
-              Sign in
-            </Link>
-          </li>
-          <li>
-            <Link className="text-black hover:text-red-400 transition-colors text-xs sm:text-base" href="#signUp">
-              Sign Up
-            </Link>
-          </li>
-        </ul>
-
-        {/* Mobile Menu */}
-        <div className="md:hidden">
-          <MobileMenu />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Mobile Menu Component
-const MobileMenu: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleToggle = () => {
-    setIsOpen((prev) => !prev);
-  };
-
-  return (
-    <div className="relative">
-      {/* Hamburger Icon */}
-      <button onClick={handleToggle} className="block cursor-pointer text-red-800">
-        <Image src="/LandingPage_Images/hamburger_icon.png" alt="menu" width={80} height={60} className="-mt-3" />
-      </button>
-
-      {/* Dropdown Menu */}
-      <div className={`absolute right-0 mt-2 w-40 bg-red-400 rounded-md shadow-lg z-20 ${isOpen ? 'block' : 'hidden'}`}>
-        <ul className="text-white text-sm">
-          <li className="pl-2 hover:bg-red-400">
-            <Link href="#home">Home</Link>
-          </li>
-          <li className="pl-2 hover:bg-red-400">
-            <Link href="#signIn">Sign in</Link>
-          </li>
-          <li className="pl-2 pt-1 hover:bg-red-400">
-            <Link href="#signUp">Sign up</Link>
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-// Footer Component
-const Footer: React.FC = () => {
-  return (
-    <footer className="w-full bg-black text-gray-300 py-10">
-      <div className="w-full px-4 mt-4">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
-          {/* Footer Column 1: Logo and About */}
-          <div className="footer-about max-w-md md:max-w-sm lg:max-w-md">
-            <Image
-              src="/LandingPage_Images/Logo.png"
-              alt="Medigeek Logo"
-              height={50}
-              width={150}
-            />
-            <p className="mt-4 ml-5 text-gray-400 break-words">
-              Medigeek is your go-to platform for connecting with peers, sharing experiences, and finding the best job opportunities.
-            </p>
-          </div>
-
-          {/* Footer Column 2: Newsletter */}
-          <div className="footer-newsletter mt-8 md:mt-0">
-            <h3 className="font-semibold text-lg mr-3 mb-3">Newsletter</h3>
-            <p className="text-gray-400 mb-4">
-              Subscribe to get the latest updates directly in your inbox.
-            </p>
-            <form onSubmit={handleNewsletterSubmit} className="flex">
-              <input
-                type="email"
-                name="email"
-                placeholder="Your email"
-                required
-                className="bg-white text-black rounded-l-md p-2 placeholder-gray-500"
-              />
-              <button
-                type="submit"
-                className="bg-red-600 text-white rounded-r-md p-2 hover:bg-red-700"
-              >
-                Subscribe
-              </button>
-            </form>
-          </div>
-          </div>
-        </div>
-    </footer>
-  );
-};
-{/*Exporting Landing Page */}
-export default LandingPage;  
+export default LandingPage;
