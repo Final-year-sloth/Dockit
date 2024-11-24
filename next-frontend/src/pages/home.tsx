@@ -1,18 +1,19 @@
-'use client';
-/*Import the Image component from Next.js.*/
+"use client";
 import Image from "next/image";
 
-/*Import the Sidebar component from the components directory.*/
 import Sidebar from "@/components/sidebar";
+import CreatePost from "@/components/CreatePost";
+import NotificationBox from "@/components/NotificationBox";
 
-/*The Home page component.*/
+/* The Home page component */
 export default function Home() {
-  /*Render the Home page content.*/
   return (
-    /*The container element for the Home page.*/
-    <div className="container">
-      {/*Render the Sidebar component.*/}
-      <Sidebar/>
+    /* The container element for the Home page */
+    <div className="container mx-auto p-4">
+      {/* Render the Sidebar component */}
+      {/*<Sidebar />*/}
+      <CreatePost />
+      <NotificationBox />
     </div>
   );
 }

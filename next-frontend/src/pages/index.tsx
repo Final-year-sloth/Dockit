@@ -1,14 +1,16 @@
+// src/pages/index.tsx
 import LandingPage from "@/LandingPage/page";
-import LandingLayout from "@/layouts/LandingLayout"
+import LandingLayout from "@/layouts/LandingLayout";
 
+import React from "react";
 
-
-const index = () => {
-  
-  return <LandingPage  />;
+const IndexPage = () => {
+  return <LandingPage />;
 };
-index.getLayout = function getLayout(page: React.ReactNode){
-  return <LandingLayout>{page}</LandingLayout>
-}
 
-export default index;
+// Define the layout for this page using getLayout
+IndexPage.getLayout = function getLayout(page: React.ReactNode) {
+  return <LandingLayout>{page}</LandingLayout>;
+};
+
+export default IndexPage;
