@@ -48,7 +48,7 @@ const LandingPage: React.FC = () => {
           </h1>
 
           {/* Description */}
-          <p className="text-gray-300 text-base md:text-lg p-2 md:p-4 break-words max-w-full">
+          <p className="text-red-300 text-base md:text-lg p-2 md:p-4 break-words max-w-full">
             Medigeek is a social media platform that provides assistance and
             various job opportunities.
           </p>
@@ -98,15 +98,15 @@ const LandingPage: React.FC = () => {
           content: "";
           position: absolute;
           inset: 0;
-          background-color: rgba(0, 0, 0, 0.4); /* dark overlay */
-          backdrop-filter: blur(3px); /* optional blur */
+          background-color: rgba(0, 0, 0, 0.1);
+
           z-index: 10;
         }
       `}</style>
 
       {/* Why Medigeek Section */}
       <section className="features-section py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-8">
           <h2 className="text-4xl font-bold text-center mb-12">
             Why Medigeek?
           </h2>
