@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './messageInput.module.css';
 import Image from 'next/image';
-import profileDefault from '../../../public/sidebar_local_images/Profile_Default.png'
+import profileDefault from '../../../public/ChatRoom_Images/Profile_Default.png'
 import Call from '../../../public/ChatRoom_Images/Call_Icon.png'
 import VideoCall from '../../../public/ChatRoom_Images/VideoCall_Icon.png'
 import About from '../../../public/ChatRoom_Images/Info_Icon.png'
@@ -43,15 +43,15 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
         <div className={styles.inputArea}>
           <div className={styles.innerContainer}>
         <Image className={`${styles.emoji} ${styles.icons}`} src={Emoji} alt={"Emoji Image"} width={30} height={30} />
-        <input className={styles.textArea} type="text" placeholder="" />
+        <input className={styles.textArea} type="text" value={message} onChange={(e) => setMessage(e.target.value)} />
         <Image className={`${styles.mic} ${styles.icons}`} src={Mic} alt={"Mic Image"} width={25} height={25} />
         <Image className={`${styles.gallery} ${styles.icons}`} src={Gallery} alt={"Gallery Image"} width={25} height={25} />
+        <button onClick={handleSubmit}>
         <Image className={`${styles.send} ${styles.icons}`} src={Send} alt={"Send Image"} width={25} height={20} />
+        </button>
           </div>
         </div>
       </div>
-      {/* <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} />
-      <button onClick={handleSubmit}>Send</button> */}
     </div>
   );
 };

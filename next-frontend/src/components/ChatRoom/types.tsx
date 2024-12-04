@@ -1,4 +1,4 @@
-// types.ts
+// types.tsx
 export interface Message {
     messageId: string;
     senderId: string;

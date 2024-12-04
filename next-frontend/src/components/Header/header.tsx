@@ -8,10 +8,15 @@ import Info from '../../../public/Header_Images/Info_Icon.png'
 import LogOut from '../../../public/Header_Images/LogOut_Icon_2.png'
 
 
-const Header = () => {
+
+const Header = ({ isOpen, onToggleSidebar }) => {
     return (
         <header className={styles.header}>
-            {/* Your header content here */}
+            <button className={`${styles.hamburgerButton} ${isOpen ? styles.open : ''}`} onClick={onToggleSidebar}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
             <div className={styles.logo}>
                 <Image className={`${styles.icons} ${styles.webIcon}`} src={WebIcon} alt="My Image" width={120} height={40} />
                 <p className={styles.copyright}>©</p>

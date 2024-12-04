@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import MessageList from './MessageList';
 import MessageInput from './MessageInput';
-// import Sidebar from '../Sidebar/sidebar';
+import Sidebar from '../Sidebar/sidebar';
 import { useRouter } from 'next/router';
 import styles from './Chat.module.css';
 import { Message } from './types';
@@ -35,13 +35,8 @@ const Chat: React.FC = () => {
   const router = useRouter();
   const socket = io('http://localhost:3000');
 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
-
-  const handleSidebarToggle = () => {
-    setIsSidebarExpanded(!isSidebarExpanded);   
-
-  };
 
 
   // Handle incoming messages
@@ -64,7 +59,7 @@ const Chat: React.FC = () => {
 
   return (
     <div className={styles.chatpage}>
-      {/* <Sidebar router={router} /> */}
+            <Sidebar router={router} isOpen={isSidebarOpen} />
       <div className={styles.chatcontainer}>
         <div className={styles.usersSection} >
           <UsersList users={users} onUserSelect={handleUserSelect} />

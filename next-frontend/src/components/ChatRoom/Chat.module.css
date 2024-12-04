@@ -30,8 +30,8 @@
     flex: 1;
   }
 
-  /* .messagelist {
-    flex: 1; /* Message list fills available space within chat container 
+   .messagelist {
+    flex: 1; 
   }
   
   .message {
@@ -71,4 +71,4 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  } */
+  } 

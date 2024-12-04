@@ -20,16 +20,18 @@ import WebIcon from '../../../public/Sidebar_Images/MediGeek_Logo.png'
 
 
 interface SidebarProps {
-  router: ReturnType<typeof useRouter>;}
+  router: ReturnType<typeof useRouter>;
+  isOpen: boolean;
+}
 
 {/* Defining the Sidebar component*/ }
-const Sidebar : React.FC<SidebarProps> = ({ router }) => {
+const Sidebar : React.FC<SidebarProps> = ({ router, isOpen }) => {
   // const router = useRouter();
   {/* Initializing state variables */ }
-  const [isOpen, setIsOpen] = useState(false);
   const [activeButton, setActiveButton] = useState(0); {/* Setting initial active button to 0 */ }
-  const [name, setName] = useState('Pradip Mondal'); {/* Setting initial name for the user */ }
+  const [name, setName] = useState('Arvind Lal'); {/* Setting initial name for the user */ }
   const firstName = name.split(' ')[0]; {/* Extracting the first name */ }
+
 
   {/* Fetching user's name from a data source or API on component mount */ }
   useEffect(() => {
@@ -42,10 +44,6 @@ const Sidebar : React.FC<SidebarProps> = ({ router }) => {
     fetchData();
   }, []);
 
-  {/* Toggling the sidebar open state */ }
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
 
   // useEffect(() => {
   //   console.log('Active button:', activeButton);
@@ -73,14 +71,12 @@ const Sidebar : React.FC<SidebarProps> = ({ router }) => {
           {/* Inner container for the sidebar content*/}
           <div className={styles.innerContainer}>
             {/* Hamburger button to toggle the sidebar */}
-            <button className={styles.hamburgerButton} onClick={toggleSidebar}>
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
+
             {/* Dashboard section, with Business Icon and Search Bar*/}
             <div className={styles.dashBoard}>
-              <Image className={styles.webIcon} src={WebIcon} alt="My Image" />
+              <div className={styles.webIcon}>
+              <Image src={WebIcon} alt="My Image" />
+              </div>
               <button className={styles.searchButton}>
                 <Image className={styles.navIcon} src={Search} alt="My Image" width={20} height={20} />
                 {/* Search input field */}
