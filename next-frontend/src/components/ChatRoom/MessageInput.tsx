@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './messageInput.module.css';
 import Image from 'next/image';
-import profileDefault from '../../../public/sidebar_local_images/Profile_Default.png'
+import profileDefault from '../../../public/ChatRoom_Images/Profile_Default.png'
 import Call from '../../../public/ChatRoom_Images/Call_Icon.png'
 import VideoCall from '../../../public/ChatRoom_Images/VideoCall_Icon.png'
 import About from '../../../public/ChatRoom_Images/Info_Icon.png'

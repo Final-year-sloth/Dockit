@@ -1,7 +1,7 @@
 import React from 'react';
 import { User } from './types';
 import styles from './userList.module.css';
-import profileDefault from '../../../public/sidebar_local_images/Profile_Default.png'
+import profileDefault from '../../../public/ChatRoom_Images/Profile_Default.png'
 import Image from 'next/image';
 interface UserListProps {
   users: User[];

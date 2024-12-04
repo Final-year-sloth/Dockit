@@ -28,7 +28,7 @@ const Sidebar : React.FC<SidebarProps> = ({ router }) => {
   {/* Initializing state variables */ }
   const [isOpen, setIsOpen] = useState(false);
   const [activeButton, setActiveButton] = useState(0); {/* Setting initial active button to 0 */ }
-  const [name, setName] = useState('Pradip Mondal'); {/* Setting initial name for the user */ }
+  const [name, setName] = useState('Arvind Lal'); {/* Setting initial name for the user */ }
   const firstName = name.split(' ')[0]; {/* Extracting the first name */ }
 
   {/* Fetching user's name from a data source or API on component mount */ }
