@@ -7,7 +7,7 @@
   padding-top: 20px;
   width: 100vw;
   height: 200vw;
-  background-color: #e29494;
+  background-color: #ffffff;
 }
 
 /**
@@ -15,12 +15,14 @@
  */
 .sidebar {
   /* border: 2px solid green; */
-  width: 122px; 
-  padding: 20px;
+  width: 82px; 
+  /* margin-top: 30px; */
+  /* padding: 20px; */
   position: fixed;
   top: 0;
   left: 0;
   transition: width 0.5s ease-in-out;
+  z-index: 3;
 }
 
 /**
@@ -35,7 +37,7 @@
  */
 .sidebarContent {
   /* display: flex; */
-  height: 95vh;
+  height: 100vh;
 }
 
 /**
@@ -43,15 +45,16 @@
  */
 .innerContainer {
   background-color: rgb(0, 0, 0);
-  height: 98%; 
+  height: 100%; 
   overflow-y: auto; 
   width: 100%;
-  border-radius: 13px;
+  /* border-radius: 13px; */
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
   /* border: 2px solid blue; */
   position: relative;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
 }
 
 /**

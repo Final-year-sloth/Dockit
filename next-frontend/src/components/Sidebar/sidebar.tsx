@@ -5,23 +5,30 @@ import Image from 'next/image';
 // import { useRouter } from 'next/router';
 import styles from './sidebar.module.css';
 
+import { useRouter } from 'next/router';
+
 {/* Importing image assets*/ }
-import Home from '../../public/sidebar_local_images/Home_Logo.png'
-import Chat from '../../public/sidebar_local_images/Chat_Logo.png'
-import Settings from '../../public/sidebar_local_images/Setings_Logo.png'
-import Search from '../../public/sidebar_local_images/Search_Logo.png'
-import Community from '../../public/sidebar_local_images/Community_Logo.png'
-import Internship from '../../public/sidebar_local_images/Internship_Logo.png'
-import Courses from '../../public/sidebar_local_images/Courses_Logo.png'
-import defaultProfle from '../../public/sidebar_local_images/Profile_Default.png'
-import WebIcon from '../../public/sidebar_local_images/MediGeek_Logo.png'
+import Home from '../../../public/Sidebar_Images/Home_Logo.png'
+import Chat from '../../../public/Sidebar_Images/Chat_Logo.png'
+import Settings from '../../../public/Sidebar_Images/Setings_Logo.png'
+import Search from '../../../public/Sidebar_Images/Search_Logo.png'
+import Community from '../../../public/Sidebar_Images/Community_Logo.png'
+import Internship from '../../../public/Sidebar_Images/Internship_Logo.png'
+import Courses from '../../../public/Sidebar_Images/Courses_Logo.png'
+import defaultProfle from '../../../public/Sidebar_Images/Profile_Default.png'
+import WebIcon from '../../../public/Sidebar_Images/MediGeek_Logo.png'
+
+
+interface SidebarProps {
+  router: ReturnType<typeof useRouter>;}
 
 {/* Defining the Sidebar component*/ }
-const Sidebar = () => {
+const Sidebar : React.FC<SidebarProps> = ({ router }) => {
+  // const router = useRouter();
   {/* Initializing state variables */ }
   const [isOpen, setIsOpen] = useState(false);
   const [activeButton, setActiveButton] = useState(0); {/* Setting initial active button to 0 */ }
-  const [name, setName] = useState('Rounak Singh'); {/* Setting initial name for the user */ }
+  const [name, setName] = useState('Pradip Mondal'); {/* Setting initial name for the user */ }
   const firstName = name.split(' ')[0]; {/* Extracting the first name */ }
 
   {/* Fetching user's name from a data source or API on component mount */ }
@@ -40,41 +47,26 @@ const Sidebar = () => {
     setIsOpen(!isOpen);
   };
 
+  // useEffect(() => {
+  //   console.log('Active button:', activeButton);
+  // }, [activeButton]);
+
   {/* Handling button clicks and updating the active button state */ }
   const handleButtonClick = (index: number) => {
     setActiveButton(index);
-
-    {/* Commented out as it's not being used */ }
-    // switch (index) {
-    //   case 0:
-    //     router.push('/home');
-    //     break;
-    //   case 1:
-    //     router.push('/chat');
-    //     break;
-    //   case 2:
-    //     router.push('/community');
-    //     break;
-    //   case 3:
-    //     router.push('/courses');
-    //     break;
-    //   case 4:
-    //     router.push('/internship');
-    //     break;
-    //   case 5:
-    //     router.push('/settings');
-    //     break;
-    //   // ... other cases
-    //   default:
-    //     break;
-    // }
-  };
+    if (index === 0) {
+      router.push('/home');
+    }
+    else if (index === 1) {
+      router.push('/chat');
+    }
+ };
 
   {/* Rendering the component */ }
   return (
     /* Container element for the page */
-    <div className={styles.page}>
-      {/* Sidebar container */}
+    // <div className={styles.page}>
+      /* Sidebar container */
       <div className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
         {/* Sidebar content container*/}
         <div className={styles.sidebarContent}>
@@ -104,24 +96,24 @@ const Sidebar = () => {
                 <Image className={styles.navIcon} src={Home} alt="My Image" width={20} height={20} />
                 <h2 className={styles.navDesc}>Home</h2>
               </button>
-              <button className={`${styles.navButton} ${activeButton === 2 ? styles.activeButton : ''}`} onClick={() => handleButtonClick(2)}>
+              <button className={`${styles.navButton} ${activeButton === 1 ? styles.activeButton : ''}`} onClick={() => handleButtonClick(1)}>
                 <Image className={styles.navIcon} src={Chat} alt="My Image" width={20} height={20} />
                 <h2 className={styles.navDesc}>Message</h2>
               </button>
-              <button className={`${styles.navButton} ${activeButton === 3 ? styles.activeButton : ''}`} onClick={() => handleButtonClick(3)}>
+              <button className={`${styles.navButton} ${activeButton === 2 ? styles.activeButton : ''}`} onClick={() => handleButtonClick(2)}>
                 <Image className={styles.navIcon} src={Community} alt="My Image" width={20} height={20} />
                 <h2 className={styles.navDesc}>Community</h2>
               </button>
-              <button className={`${styles.navButton} ${activeButton === 4 ? styles.activeButton : ''}`} onClick={() => handleButtonClick(4)}>
+              <button className={`${styles.navButton} ${activeButton === 3 ? styles.activeButton : ''}`} onClick={() => handleButtonClick(3)}>
                 <Image className={styles.navIcon} src={Courses} alt="My Image" width={20} height={20} />
 
                 <h2 className={styles.navDesc}>Courses</h2>
               </button>
-              <button className={`${styles.navButton} ${activeButton === 5 ? styles.activeButton : ''}`} onClick={() => handleButtonClick(5)}>
+              <button className={`${styles.navButton} ${activeButton === 4 ? styles.activeButton : ''}`} onClick={() => handleButtonClick(4)}>
                 <Image className={styles.navIcon} src={Internship} alt="My Image" width={20} height={20} />
                 <h2 className={styles.navDesc}>Internship</h2>
               </button>
-              <button className={`${styles.navButton} ${activeButton === 6 ? styles.activeButton : ''}`} onClick={() => handleButtonClick(6)}>
+              <button className={`${styles.navButton} ${activeButton === 5 ? styles.activeButton : ''}`} onClick={() => handleButtonClick(5)}>
                 <Image className={styles.navIcon} src={Settings} alt="My Image" width={20} height={20} />
                 <h2 className={styles.navDesc}>Settings</h2>
               </button>
@@ -145,7 +137,7 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
-    </div>
+    // </div>
   );
 };
 
