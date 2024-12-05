@@ -1,0 +1,162 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 45px;
+    background-color: #b61919;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* border: 2px solid red; */
+    z-index: 0;
+   box-shadow: 5px 5px 10px rgba(212, 22, 22, 0.2);
+    display: flex;
+    flex-direction: row;
+    /* padding: 0px 0px 0px 0px ; */
+    align-items: center;
+    justify-content: space-between;
+}
+.logo
+{
+    position: relative;
+    margin-left: 80px;
+    width: 140px;
+    height: 38px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+    border: 2.5px solid #7d1313;
+}
+.webIcon
+{
+    position: absolute;
+    /* filter: invert(); */
+    margin-bottom: 7px;
+    /* border:2px solid red; */
+    padding: 0px;
+}
+p.copyright {
+    position: absolute;
+    top: 12px;
+    right: 8px;
+    font-size: 12px;
+    color: #b61919;
+    /* margin:7px 0px 0px 0px; */
+    /* border:2px solid red; */
+
+  }
+  .iconsContainer{
+    height: 20px;
+    width: 50px;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20px;
+  }
+
+  .icons{
+
+    /* border: 2px  solid white; */
+    cursor: pointer;
+
+  }
+  .searchBar{
+    width: 400px;
+    /* border: 2px solid green; */
+    height: 32px;
+    background: none;
+    color: white;
+    font-weight: 100;
+  }
+  .searchBar:focus {
+    border: none;
+    outline: none;
+  }
+  .searchSpace
+  {
+    background-color: #7d1313;
+    display: flex;
+    /* border: 2px solid white; */
+    border-radius: 7px;
+    margin-bottom: 1.5px;
+    margin-right: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 15px;
+  }
+/**
+ * Styles for the hamburger button
+ */
+ .hamburgerButton {
+  width: 30px;
+  height:30px;
+  border: none;
+  background-color: #7d1313;
+  transition: background-color 0.3s ease-in-out;;
+  cursor: pointer;
+  /* margin-top: 20px; */
+  /* border: 2px solid blue; */
+  border-radius: 5px;
+  position: absolute;
+  top: 10px;
+  left: 25px;
+  /* transition: right 1s ease-in-out; */
+  padding: 8px;
+
+}
+/**
+ * Styles for the hamburger button on hover
+ */
+ .hamburgerButton:hover {
+  background-color: white;
+
+}
+
+/**
+ * Styles for the hamburger button spans
+ */
+.hamburgerButton span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #fdfcfc;
+  transition: transform 0.3s ease-in-out,background-color 0.3s ease-in-out;
+  /* border: 1px solid green; */
+  /* padding: 1.5px; */
+  border-radius: 5px;
+}
+.hamburgerButton:hover > span{
+  background-color: #7d1313;
+
+}
+
+/**
+ * Styles for the second hamburger button span
+ */
+.hamburgerButton span:nth-child(2) {
+  margin: 3px 0px;
+}
+
+/**
+ * Styles for the open sidebar hamburger button
+ */
+.sidebar.open .hamburgerButton {
+  padding-top: 17px;
+}
+
+/**
+ * Styles for the open sidebar hamburger button spans
+ */
+.open  span:nth-child(1) {
+  transform: rotate(45deg) translate(3.5px, 3.5px);
+}
+
+.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(3.5px, -3.5px);
+}
