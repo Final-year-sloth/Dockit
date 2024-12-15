@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 
 type Notification = {
@@ -9,85 +9,52 @@ type Notification = {
   userIcon: string;
 };
 
-const NotificationBox: React.FC = () => {
-  const [notifications, setNotifications] = useState<Notification[]>([
-    {
-      id: 1,
-      message: "Your article received a like.",
-      sender: "Dr. Rebecca Smith",
-      timestamp: "10 minutes ago",
-      userIcon: "/NotificationBox_Images/user2.png",
-    },
-    {
-      id: 2,
-      message: "You have a new message about your post.",
-      sender: "Dr. John Doe",
-      timestamp: "5 minutes ago",
-      userIcon: "/NotificationBox_Images/user1.png",
-    },
+interface NotificationBoxProps {
+  notifications: Notification[];
+  clearNotifications: () => void;
+}
 
-    {
-      id: 3,
-      message: "Your post has been shared.",
-      sender: "Dr. Alice Brown",
-      timestamp: "15 minutes ago",
-      userIcon: "/NotificationBox_Images/user2.png",
-    },
-    {
-      id: 4,
-      message: "You have a new follower.",
-      sender: "Dr. David Miller",
-      timestamp: "20 minutes ago",
-      userIcon: "/NotificationBox_Images/user1.png",
-    },
-    {
-      id: 5,
-      message: "A new job has been posted.",
-      sender: "Dr. Mike Williams",
-      timestamp: "25 minutes ago",
-      userIcon: "/NotificationBox_Images/user1.png",
-    },
-  ]);
+const NotificationBox: React.FC<NotificationBoxProps> = ({
+  notifications,
+  clearNotifications,
+}) => {
+  const [isExpanded, setIsExpanded] = React.useState(false);
 
-  const [isExpanded, setIsExpanded] = useState(false);
-
+  // Toggle expanded view
   const toggleView = () => {
     setIsExpanded((prev) => !prev);
   };
 
-  const clearNotifications = () => {
-    setNotifications([]);
-  };
-
   const visibleNotifications = isExpanded
     ? notifications
-    : notifications.slice(0, 3);
+    : notifications.slice(0, 3); // Show only 3 when collapsed
 
   return (
-    <div className="relative flex flex-col items-center w-[400px] mx-auto mt-10">
+    <div className="relative flex flex-col items-center w-[350px] mx-auto">
       {/* Arrow on Top */}
       <style jsx>{`
         .notification-box::before {
           content: "";
           position: absolute;
           top: -10px;
-          left: 20px;
+          left: 85%;
+          transform: translateX(-50%);
           width: 0;
           height: 0;
           border-left: 10px solid transparent;
           border-right: 10px solid transparent;
-          border-bottom: 10px solid rgb(185 28 28);
+          border-bottom: 10px solid #d1d5db;
         }
       `}</style>
 
       {/* Notification Box */}
-      <div className="notification-box bg-red-700 rounded-lg shadow-lg p-4 w-full">
+      <div className="notification-box bg-gray-200 rounded-lg shadow-lg p-3 w-full">
         {/* Header */}
-        <div className="flex justify-between items-center text-white mb-4">
+        <div className="flex justify-between items-center text-black mb-4">
           <h2 className="text-lg font-semibold">Notifications</h2>
           <button
             onClick={clearNotifications}
-            className="text-sm hover:underline"
+            className="text-sm text-red-500 hover:underline"
           >
             Clear All
           </button>
@@ -105,21 +72,21 @@ const NotificationBox: React.FC = () => {
             visibleNotifications.map((notification) => (
               <div
                 key={notification.id}
-                className="p-2 mb-2 bg-gray-50 border rounded-md hover:bg-gray-100 flex items-center"
+                className="p-2 mb-1 bg-gray-50 border rounded-md hover:bg-gray-100 flex items-center"
               >
                 {/* User Icon */}
                 <div className="flex-shrink-0">
                   <Image
-                    src={notification.userIcon} // Dynamic user icon
+                    src={notification.userIcon}
                     alt={`${notification.sender}'s profile`}
-                    width={40}
-                    height={40}
+                    width={36}
+                    height={36}
                     className="rounded-full"
                   />
                 </div>
 
                 {/* Notification Content */}
-                <div className="ml-4 flex-1">
+                <div className="ml-3 flex-1">
                   <div className="flex justify-between">
                     <p className="font-semibold text-gray-800">
                       {notification.sender}
@@ -141,7 +108,7 @@ const NotificationBox: React.FC = () => {
         {notifications.length > 3 && (
           <button
             onClick={toggleView}
-            className="mt-2 text-sm font-medium text-white hover:underline"
+            className="mt-2 text-sm font-medium text-black hover:underline"
           >
             {isExpanded ? "Show Less Notifications" : "Show All Notifications"}
           </button>
