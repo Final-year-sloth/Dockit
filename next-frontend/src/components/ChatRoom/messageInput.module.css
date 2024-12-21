@@ -1,0 +1,97 @@
+.mainContainer {
+    /* border: 2px solid red; */
+    height: 98vh;
+}
+
+.topArea {
+    padding: 0px 20px;
+    border: 1px solid grey;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.messages {
+    /* border: 2px solid green; */
+    height: calc(98vh - 140px);
+}
+
+.textInput {
+    /* border: 2px solid blue; */
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputArea {
+    border: 1px solid grey;
+    height: 50px;
+    border-radius: 20px;
+    width: 100%;
+    margin: 0px 20px;
+
+}
+.inputArea>.innerContainer{
+    height: 100%;
+    display: flex;
+    padding: 0px 10px;
+    align-items: center;
+    /* border: 2px solid red; */
+}
+
+.userInfo {
+    /* border: 2px solid red; */
+    display: flex;
+    align-items: center;
+    width: 700px;
+    cursor: pointer;
+}
+.userInfo>.textArea{
+    display: flex;
+    flex-direction: column;
+}
+.speciality
+{
+    font-weight: 100;
+    font-size: smaller;
+}
+.userAvatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    /* border: 2px solid red; */
+}
+
+.userName {
+    font-weight: bold;
+    /* border: 2px solid red; */
+
+}
+
+.contactInfo {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-between;
+    width: 94px;
+}
+
+.aboutUser {
+    filter: invert();
+}
+.textArea{
+    width: calc(100% - 80px);
+    background: none;
+    height: 40px;
+}
+.textArea:focus{
+    border: none;
+    outline: none;
+}
+.icons
+{
+    margin: 0px 3px;
+    cursor: pointer;
+}

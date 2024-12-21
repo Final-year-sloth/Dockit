@@ -1,0 +1,74 @@
+/* chat.css */
+
+.chatpage {
+    display: flex; /* Allow sidebar and chat container to sit side-by-side */
+    height: 100vh; /* Occupy full viewport height */
+    width: 100vw;
+    /* border: 29px solid green; */
+  }
+  
+  .chatcontainer {
+    flex: 1; /*Chat container takes up remaining space after sidebar*/
+    /* margin-top: 40px; */
+    margin-left: 100px;
+    display: flex;
+    /* flex-direction: column; */
+    /* overflow-y: scroll; Enable scrolling for long message lists */
+    /* padding: 20px; */
+    /* background-color: red; */
+    /* width: 100vw; */
+    /* border: 2px solid black; */
+  }
+  
+  .usersSection {
+    /* border: 2px solid green; */
+    width: 25%;
+  }
+  .chatSpace {
+    margin-right: 20px;
+    /* border: 2px solid red; */
+    flex: 1;
+  }
+
+   .messagelist {
+    flex: 1; 
+  }
+  
+  .message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .message.sent {
+    background-color: #e0e0e0;
+    text-align: right;
+  }
+  
+  .message.received {
+    background-color: #f0f0f0;
+    text-align: left;
+  }
+  
+  .messageinput {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+  }
+  
+  .messageinput input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .messageinput button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  } 
