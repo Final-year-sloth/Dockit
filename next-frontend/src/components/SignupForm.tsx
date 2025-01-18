@@ -1,89 +1,168 @@
-import React,{useState} from 'react'
+import Image from "next/image";
+import React from "react";
+import { useForm } from "react-hook-form";
+import axios from "axios"
 
-const SignupForm: React.FC = () => {
-  const colleges = ["All India Institute of Medical Sciences, Kalyani, Nadia","JMN Medical College, Nadia","JIS School of Medical Science & Research, Howrah","Jhargram Government Medical College & Hospital"] //Valid Colleges list
-  const [name,setName]=useState('');
-  const [email,setEmail]=useState('');
-  const [college,setCollege]=useState('');
-  const [password,setPassword]=useState('');
-  // const [confirmPassword,setConfirmPassword]=useState(''); this will be updated later.
-  const [error,setError]=useState('');
+interface FormData {
+  name: string;
+  email: string;
+  collegeName: string;
+  password: string;
+  confirmPassword: string;
+}
+const SignUp: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm<FormData>();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!colleges.includes(college)) {
-      setError('College not in the allowed list');
-    } else {
-      setError('');
-      // Perform signup logic here
-      console.log('Signup process initiated');
+  const onSubmit = handleSubmit(async (data) => {
+    const { name, email, password }=data;
+    try {
+      const response = await axios.post("http://localhost:5000/api/auth/signup", data);
+      console.log("User Registered:", response.data);
+    } catch (error) {
+      console.error("User Registration Failed:", error);
     }
-  };
+
+    
+  });
+
+  const password = watch("password");
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-    <h2 className="text-2xl font-bold text-center">Sign Up</h2>
-    
-    {error && <p className="text-red-500 text-sm">{error}</p>}
-    
     <div>
-      <label className="block mb-1 text-sm">Name</label>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        className="w-full px-3 py-2 border rounded"
-        required
-      />
-    </div>
-    
-    <div>
-      <label className="block mb-1 text-sm">Email</label>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="w-full px-3 py-2 border rounded"
-        required
-      />
-    </div>
+      {/* Logo at the top */}
+            <div className="absolute top-4 left-4">
+              <Image src="/Header_Images/MediGeek_Logo.png" alt="Logo" className="mx-auto h-24" 
+              width={200} height={100} />
+            </div>
 
-    <div>
-      <label className="block mb-1 text-sm">Password</label>
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="w-full px-3 py-2 border rounded"
-        required
-      />
-    </div>
+      {/* Sign Up Box */}
+      <div className="max-w-md w-full bg-blurred p-8 border border-black rounded shadow-lg">
+        <div className="text-left font-medium text-xl mb-6">Sign Up</div>
 
-    <div>
-      <label className="block mb-1 text-sm">College</label>
-      <input
-        type="text"
-        value={college}
-        onChange={(e) => setCollege(e.target.value)}
-        className="w-full px-3 py-2 border rounded"
-        required
-      />
-    </div>
+        <form className="space-y-6" onSubmit={onSubmit}>
+          {/* Name Field */}
+          <div>
+            <label htmlFor="name" className="text-sm font-bold text-gray-600">
+              Full Name
+            </label>
+            <input
+              {...register("name", { required: "Name is required" })}
+              name="name"
+              type="text"
+              placeholder="Enter your full name"
+              className={`w-full p-2 border rounded mt-1 ${
+                errors.name ? "border-red-500" : "border-gray-300"
+              }`}
+            />
+            {errors.name && (
+              <p className="text-red-500 text-sm">{errors.name.message}</p>
+            )}
+          </div>
 
-    <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
-      Sign Up
-    </button>
 
-    <div className="mt-4">
-      <p className="text-center text-sm">or continue with</p>
-      <div className="flex justify-between mt-2">
-        <button type="button" className="w-full mr-2 py-2 bg-red-500 text-white rounded">Google</button>
-        <button type="button" className="w-full ml-2 py-2 bg-blue-700 text-white rounded">Microsoft</button>
+          {/* Email Field */}
+          <div>
+            <label htmlFor="email" className="text-sm font-bold text-gray-600">
+              Email Address
+            </label>
+            <input
+              {...register("email", {
+                required: "Email is required",
+                minLength: {
+                  value: 6,
+                  message: "Email must be at least 6 characters",
+                },
+                maxLength: {
+                  value: 30,
+                  message: "Email must not exceed 30 characters",
+                },
+              })}
+              name="email"
+              type="email"
+              placeholder="Enter your email address"
+              className={`w-full p-2 border rounded mt-1 ${
+                errors.email ? "border-red-500" : "border-gray-300"
+              }`}
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
+          </div>
+          {/* College Name Field */}
+          <div>
+            <label htmlFor="name" className="text-sm font-bold text-black">
+              College Name
+            </label>
+            <input
+              {...register("name", { required: "Name is required" })}
+              name="name"
+              type="text"
+              placeholder="Enter your full name"
+              className={`w-full p-2 border rounded mt-1 ${
+                errors.name ? "border-red-500" : "border-gray-300"
+              }`}
+            />
+            {errors.name && (
+              <p className="text-red-500 text-sm">{errors.name.message}</p>
+            )}
+          </div>
+
+          {/* Password Field */}
+          <div>
+            <label
+              htmlFor="password"
+              className="text-sm font-bold text-gray-600"
+            >
+              Password
+            </label>
+            <input
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters",
+                },
+              })}
+              name="password"
+              type="password"
+              placeholder="Enter a password"
+              className={`w-full p-2 border rounded mt-1 ${
+                errors.password ? "border-red-500" : "border-gray-300"
+              }`}
+            />
+            {errors.password && (
+              <p className="text-red-500 text-sm">{errors.password.message}</p>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-2 px-4 bg-black hover:bg-gray-500 rounded-md text-white text-sm"
+          >
+            Sign Up
+          </button>
+        </form>
+
+        {/* Already Have an Account Option */}
+        <div className="mt-4 text-center">
+          <p className="text-gray-600 text-sm">
+            Already have an account?{" "}
+            <a
+              href="/auth/login"
+              className="text-blue-500 font-medium hover:underline"
+            >
+              Login
+            </a>
+          </p>
+        </div>
       </div>
     </div>
-  </form>
-  )
-}
+  );
+};
 
-export default SignupForm
+export default SignUp;

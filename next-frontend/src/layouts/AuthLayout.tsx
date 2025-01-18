@@ -13,8 +13,13 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <div >
+      <div className="min-h-screen w-screen flex items-center justify-center  bg-cover bg-center"
+      style={{backgroundImage: "url('/AuthBg/login.jpg')"}}>
+      <div className="w-full max-w-md bg-blurred p-6 rounded-md shadow-md">
+      {children}
+      </div>
+      </div>
+    </div>
   );
 }
