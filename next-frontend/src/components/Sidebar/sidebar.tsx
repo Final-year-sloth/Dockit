@@ -58,6 +58,15 @@ const Sidebar : React.FC<SidebarProps> = ({ router, isOpen }) => {
     else if (index === 1) {
       router.push('/chat');
     }
+    else if (index === 2) {
+      router.push('/community');
+    }else if (index === 3) {
+      router.push('/courses');
+    }else if (index === 4) {
+      router.push('/internship');
+    }else if (index === 5) {
+      router.push('/settings');
+    }
  };
 
   {/* Rendering the component */ }
