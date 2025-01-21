@@ -1,7 +1,7 @@
 import ApiResponse from "../config/ApiResponse";
 import User from "../models/user.models";
 import ApiError from "../config/ApiError";
-
+import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import { NextFunction, Request, Response } from "express";
 
@@ -23,22 +23,7 @@ export const generateAccessandRefreshToken= async(userId:any)=>{
     }
 }
 
-export const signup=async(req: Request,res: Response)=>{
-    const {fullName ,collegeName, email, password }=req.body;
-    try {
-        const hashedPassword=await bcrypt.hash(password,10);
-        const newUser =await User.create({
-            fullName,
-            collegeName,
-            email,
-            password:hashedPassword
-        })
-        res.status(201).json(new ApiResponse(201,"User created successfully", newUser))//remove the string and make sure to return the newUser.
-    } catch (error) {
-        res.status(400).json()
-    }
 
-}
 
 export const login=async (req: Request, res: Response)=>{
      const {email,password,userName}=req.body;
@@ -98,4 +83,21 @@ export const forgetPassword=async (req: Request, res: Response)=>{
     }
 }
 
-
+export const logout=async(req: Request, res: Response)=>{
+    const refreshToken=req.cookies.refreshToken;
+    if (!refreshToken){
+        res.status(400).json(new ApiError(400,"Please login first"))
+    }
+    try {
+        const decoded:any=jwt.verify(refreshToken,process.env.JWT_SECRET as string);
+        const user:any= await User.findById(decoded.id);
+        if (!user){
+            res.status(404).json(new ApiError(404,"User not found"))
+        }
+        user.refreshToken=null;
+        await user.save({validateBeforeSave:false});
+        res.status(200).json(new ApiResponse(200,"User logged out successfully",null));
+    } catch (error) {
+        res.status(400).json(new ApiError(400,"Failed to logout"))
+    }
+}
