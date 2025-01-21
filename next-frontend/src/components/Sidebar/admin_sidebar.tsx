@@ -6,6 +6,8 @@ import styles from './sidebar.module.css';
 
 import { useRouter } from 'next/router';
 
+import { ActiveButtonContext } from './context/activeBtnContext'; 
+
 {/* Importing image assets*/ }
 import Home from '../../../public/Sidebar_Images/Home_Logo.png'
 import Chat from '../../../public/Sidebar_Images/Chat_Logo.png'
@@ -28,7 +30,7 @@ interface SidebarProps {
 const Sidebar : React.FC<SidebarProps> = ({ router, isOpen }) => {
   // const router = useRouter();
   {/* Initializing state variables */ }
-  const [activeButton, setActiveButton] = useState(0); {/* Setting initial active button to 0 */ }
+  const { activeButton, setActiveButton } = useContext(ActiveButtonContext);
   const [name, setName] = useState('Arvind Lal'); {/* Setting initial name for the user */ }
   const firstName = name.split(' ')[0]; {/* Extracting the first name */ }
 
@@ -57,6 +59,19 @@ const Sidebar : React.FC<SidebarProps> = ({ router, isOpen }) => {
     }
     else if (index === 1) {
       router.push('/chat');
+    }
+    else if (index === 2) {
+      router.push('/community');
+    }else if (index === 3) {
+      router.push('/courses');
+    }else if (index === 4) {
+      router.push('/internship');
+    }else if (index === 5) {
+      router.push('/settings');
+    }else if (index === 6) {
+      router.push('/admin');
+    }else if (index === 7) {
+      router.push('/profile');
     }
  };
 
@@ -120,7 +135,7 @@ const Sidebar : React.FC<SidebarProps> = ({ router, isOpen }) => {
               {/*Change the buttons accordingly in future*/}
             </div>
             {/* Profile section */}
-            <div className={styles.profileSection}>
+            <div className={`${styles.profileSection} ${activeButton === 5 ? styles.activeButton : ''}`} onClick={() => handleButtonClick(7)}>
               <Image className={styles.profileIcon} src={defaultProfle} alt="My Image" width={50} height={50}></Image>
               {/* Renderig the name dynamically, appearing or disappearing based on the 'isOpen' prop*/}
               <h1 className={isOpen ? styles.appear : styles.disappear}>

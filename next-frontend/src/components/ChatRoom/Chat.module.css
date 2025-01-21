@@ -2,9 +2,10 @@
 
 .chatpage {
     display: flex; /* Allow sidebar and chat container to sit side-by-side */
-    height: 100vh; /* Occupy full viewport height */
-    width: 100vw;
-    /* border: 29px solid green; */
+    height: calc(100vh-30px); /* Occupy full viewport height */
+    width: 97.6vw;
+    /* border: 2px solid green; */
+    margin-top: 30px;
   }
   
   .chatcontainer {

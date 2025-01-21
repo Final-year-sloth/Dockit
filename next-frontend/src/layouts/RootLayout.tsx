@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { Inter } from "next/font/google";
 import Sidebar from "@/components/Sidebar/sidebar";
-
 const inter = Inter({ subsets: ["latin"] });
 
 
@@ -25,7 +24,7 @@ const toggleSidebar = () => {
       <div className="container mx-auto p-4">
 
 {/* Render the Sidebar component */}
-<Sidebar router={router} isOpen={isSidebarOpen} />
+      <Sidebar router={router} isOpen={isSidebarOpen} />
 {/* Render the Header component */}
 <Header isOpen={isSidebarOpen} onToggleSidebar={toggleSidebar}/>
        

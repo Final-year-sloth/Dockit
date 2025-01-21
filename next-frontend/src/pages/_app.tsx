@@ -1,8 +1,14 @@
 import "../styles/globals.css";
 import { AppProps } from "next/app";
+import { ActiveButtonProvider } from '../components/Sidebar/context/activeBtnContext'; 
+
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return(
+  <ActiveButtonProvider>
+    <Component {...pageProps} />;
+  </ActiveButtonProvider>
+  );
 }
 export default MyApp;
 

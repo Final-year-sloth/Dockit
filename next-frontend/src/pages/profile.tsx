@@ -7,7 +7,7 @@ import Posts from "@/components/ProfilePage/post"
 const profileData = {
   name: "Jane Doe",
   username: "@janedoe",
-  avatarUrl: "/placeholder.svg?height=150&width=150",
+  avatarUrl: "",
   bio: "Frontend developer | Coffee enthusiast | Dog lover",
   followers: 1234,
   following: 567,

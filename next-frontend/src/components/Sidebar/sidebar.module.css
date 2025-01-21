@@ -90,15 +90,16 @@
  * Styles for the navigation buttons
  */
 .navigationButtons {
-  margin-top: 0px;
+  margin-bottom: 65px;
   display: flex;
   flex-direction: column;
   margin-left: 20px;
   width: calc(100% - 40px);
-  height: 325px;
+  /* height: 325px; */
+  flex: 1;
   /* align-items: center; */
   /* border: 2px solid red; */
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 /**
@@ -201,7 +202,7 @@
   height: 2px;
   background-color: rgb(75, 68, 68);
   border-radius: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 5px;
   margin-left: 20px
 }
 
