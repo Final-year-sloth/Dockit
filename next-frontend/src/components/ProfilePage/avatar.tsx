@@ -9,7 +9,7 @@ export default function Avatar({ url, name }: AvatarProps) {
   return (
     <div className="flex-shrink-0">
       <Image
-        src={url || "/placeholder.svg"}
+        src={url || "/Sidebar_Images/Profile_Default.png"}
         alt={`${name}'s avatar`}
         width={150}
         height={150}

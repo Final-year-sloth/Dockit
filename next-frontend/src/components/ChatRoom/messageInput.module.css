@@ -1,6 +1,6 @@
 .mainContainer {
     /* border: 2px solid red; */
-    height: 98vh;
+    height: 100%;
 }
 
 .topArea {
@@ -14,7 +14,7 @@
 
 .messages {
     /* border: 2px solid green; */
-    height: calc(98vh - 140px);
+    height: calc(100% - 140px);
 }
 
 .textInput {

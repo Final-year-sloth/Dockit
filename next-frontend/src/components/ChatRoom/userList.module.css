@@ -1,7 +1,7 @@
 /* userlist.module.css */
 .userList
 {
-  height: auto; /* Initially, let the height be dynamic */
+  height: 100%; /* Initially, let the height be dynamic */
   max-height: 100%; /* Set a maximum height to limit scrolling */
   overflow-y: auto; 
   /* overflow-x: hidden; */
